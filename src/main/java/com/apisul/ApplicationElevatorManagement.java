@@ -21,6 +21,14 @@ public class ApplicationElevatorManagement {
         //c. Qual é o elevador menos frequentado e o período que se encontra menor fluxo;
         System.out.println("Elevador menos frequentado: " + service.elevadorMenosFrequentado());
 
+        // Período de menor fluxo(?)
+//        List<Character> codigosTurnoMenorFluxo = service.periodoMenorFluxoElevadorMenosFrequentado();
+//        List<String> nomesTurnoMenorFluxo = codigosTurnoMenorFluxo.stream()
+//                .map(c -> com.apisul.model.Turno.fromCodigo(String.valueOf(c)).name())
+//                .toList();
+//
+//        System.out.println("Período de menor fluxo dos elevadores menos frequentados: " + nomesTurnoMenorFluxo);
+
         //d. Qual o período de maior utilização do conjunto de elevadores;
         List<Character> codigosTurno = service.periodoMaiorUtilizacaoConjuntoElevadores();
 

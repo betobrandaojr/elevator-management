@@ -93,7 +93,6 @@ public class ElevadorService implements IElevadorService {
                 .collect(Collectors.toList());
     }
 
-    @Override
     public List<Character> periodoMenorFluxoElevadorMenosFrequentado() {
         List<Character> elevadoresMenos = elevadorMenosFrequentado();
         Set<Character> resultado = new HashSet<>();
@@ -102,6 +101,10 @@ public class ElevadorService implements IElevadorService {
             Map<Turno, Long> contagem = registros.stream()
                     .filter(e -> e.getElevador() == elevador)
                     .collect(Collectors.groupingBy(Elevador::getTurno, Collectors.counting()));
+            for (Turno turno : Turno.values()) {
+                contagem.putIfAbsent(turno, 0L);
+            }
+
             long min = contagem.values().stream().min(Long::compare).orElse(0L);
             contagem.entrySet().stream()
                     .filter(e -> e.getValue() == min)
@@ -111,6 +114,7 @@ public class ElevadorService implements IElevadorService {
         }
         return new ArrayList<>(resultado);
     }
+
 
     @Override
     public List<Character> periodoMaiorUtilizacaoConjuntoElevadores() {
